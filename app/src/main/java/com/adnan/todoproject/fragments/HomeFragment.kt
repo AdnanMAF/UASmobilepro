@@ -72,7 +72,9 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
                     val taskId = taskSnapshot.key ?: continue
                     val task = taskSnapshot.child("task").value.toString()
                     val isDone = taskSnapshot.child("isDone").value as? Boolean ?: false
-                    val todoTask = ToDoData(taskId, task, isDone)
+                    val latitude = taskSnapshot.child("latitude").value.toString()
+                    val longitude = taskSnapshot.child("longitude").value.toString()
+                    val todoTask = ToDoData(taskId, task, isDone, latitude, longitude)
                     toDoItemList.add(todoTask)
                 }
                 Log.d(TAG, "onDataChange: $toDoItemList")
@@ -98,17 +100,17 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
         binding.mainRecyclerView.adapter = taskAdapter
     }
 
-    override fun saveTask(task: String, isDone: Boolean, todoEt: TextInputEditText) {
+    override fun saveTask(todoTask: String, isDone: Boolean, latitude: String, longitude: String, todoEdit: TextInputEditText) {
         val key = database.push().key
         if (key == null) {
             Log.w(TAG, "Couldn't get push key for tasks")
             return
         }
-        val toDoTask = ToDoData(key, task, isDone)
+        val toDoTask = ToDoData(key, todoTask, isDone, latitude, longitude)
         database.child(key).setValue(toDoTask).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(context, "Task Added Successfully", Toast.LENGTH_SHORT).show()
-                todoEt.text = null
+                todoEdit.text = null
             } else {
                 Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
             }
@@ -116,15 +118,17 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
         frag?.dismiss()
     }
 
-    override fun updateTask(toDoData: ToDoData, todoEt: TextInputEditText) {
+    override fun updateTask(toDoData: ToDoData, todoEdit: TextInputEditText) {
         val map = mapOf(
             "task" to toDoData.task,
-            "isDone" to toDoData.isDone
+            "isDone" to toDoData.isDone,
+            "latitude" to toDoData.latitude,
+            "longitude" to toDoData.longitude
         )
         database.child(toDoData.taskId).updateChildren(map).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(context, "Task Updated Successfully", Toast.LENGTH_SHORT).show()
-                todoEt.text = null
+                todoEdit.text = null
             } else {
                 Toast.makeText(context, task.exception?.message, Toast.LENGTH_SHORT).show()
             }
@@ -136,7 +140,7 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
         if (frag != null) {
             childFragmentManager.beginTransaction().remove(frag!!).commit()
         }
-        frag = ToDoDialogFragment.newInstance(toDoData.taskId, toDoData.task)
+        frag = ToDoDialogFragment.newInstance(toDoData.taskId, toDoData.task, toDoData.latitude, toDoData.longitude)
         frag!!.setListener(this)
         frag!!.show(childFragmentManager, ToDoDialogFragment.TAG)
     }

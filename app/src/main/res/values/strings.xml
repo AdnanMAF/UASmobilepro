@@ -12,4 +12,8 @@
     <string name="not_registered">Need to create an account?</string>
     <string name="to_do_list">To-Do List</string>
     <string name="logout">LogOut</string>
+    <string name="add_location">Add Location</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="confirm_location">Confirm Location</string>
 </resources>

@@ -26,6 +26,8 @@ class TaskAdapter(private val list: MutableList<ToDoData>) : RecyclerView.Adapte
         val toDoData = list[position]
         with(holder.binding) {
             todoTask.text = toDoData.task
+            latitudeText.text = toDoData.latitude
+            longitudeText.text = toDoData.longitude
             doneCB.isChecked = toDoData.isDone
             Log.d(TAG, "onBindViewHolder: $toDoData")
 
