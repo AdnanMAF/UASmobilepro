@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Devas To Do</string>
+    <!-- TODO: Ubah atau hapus teks placeholder ini -->
+    <string name="hello_blank_fragment">Hello empty fragment</string>
+    <string name="enter_your_email">Email Address</string>
+    <string name="enter_your_pass">Enter Password</string>
+    <string name="re_enter_your_pass">Confirm Password</string>
+    <string name="type_your_task">Enter your task here...</string>
+    <string name="sign_up">Register</string>
+    <string name="sign_in">Log In</string>
+    <string name="already_registered">Already have an account?</string>
+    <string name="not_registered">Dont have an account?</string>
+    <string name="to_do_list">Do List</string>
+    <string name="logout">Sign Out</string>
+    <string name="add_location">Include Location</string>
+    <string name="latitude">Lat</string>
+    <string name="longitude">Long</string>
+    <string name="confirm_location">Verify Location</string>
+    <string name="background_image">Background Image</string>
+
+    <!-- Tambahan untuk halaman About -->
+    <string name="about_text">This is the About Page. Here you can provide information about the app.</string>
+    <string name="close">Close</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "325263351643",
+    "project_id": "todoproject-c099d",
+    "storage_bucket": "todoproject-c099d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325263351643:android:4412148bf37d1a969f447e",
+        "android_client_info": {
+          "package_name": "com.deva.doingto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAHDLAzgvPl2isDmxWRWJlontRewUZtNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
